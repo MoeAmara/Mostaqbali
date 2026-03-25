@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>مستقبلي 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070c18;--surface:#0d1426;--surface2:#131d35;--card:#182040;
+  --gold:#f5c842;--gold2:#fb923c;--gold-dim:rgba(245,200,66,.13);
+  --blue:#5eaeff;--blue-dim:rgba(94,174,255,.12);
+  --green:#3dd68c;--green-dim:rgba(61,214,140,.12);
+  --red:#ff6b6b;--red-dim:rgba(255,107,107,.12);
+  --purple:#b98ef8;--purple-dim:rgba(185,142,248,.12);
+  --orange:#fb923c;
+  --text:#e4e9f5;--dim:#5a6580;--border:rgba(255,255,255,.06);
+  --nav:70px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;overflow-x:hidden;position:relative}
+
+/* PIN SCREEN */
+#pin-screen{position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px}
+.pin-logo{font-size:64px;animation:logoPulse 2.5s ease-in-out infinite}
+@keyframes logoPulse{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.1) rotate(3deg)}}
+.pin-title{font-size:28px;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center}
+.pin-sub{font-size:14px;color:var(--dim);text-align:center;margin-top:4px}
+.pin-dots{display:flex;gap:18px}
+.pin-dot{width:15px;height:15px;border-radius:50%;border:2px solid var(--gold);background:transparent;transition:all .2s}
+.pin-dot.filled{background:var(--gold);transform:scale(1.15);box-shadow:0 0 12px rgba(245,200,66,.5)}
+.pin-error{color:var(--red);font-size:14px;height:20px;text-align:center}
+.pin-error.shake{animation:shake .35s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:272px}
+.pin-btn{background:var(--card);border:1px solid var(--border);border-radius:18px;height:70px;font-size:24px;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;user-select:none}
+.pin-btn:active{transform:scale(.9);background:var(--surface2);border-color:var(--gold);box-shadow:0 0 16px rgba(245,200,66,.3)}
+.pin-btn.empty{background:transparent;border:none;pointer-events:none}
+
+/* APP */
+#app{display:none;padding-bottom:var(--nav)}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:var(--nav);background:rgba(7,12,24,.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;z-index:100;padding:0 4px}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:8px 10px;border-radius:14px;transition:all .2s;position:relative;min-width:48px}
+.nav-item .ni{font-size:20px;transition:transform .2s}
+.nav-item .nl{font-size:9px;color:var(--dim);transition:color .2s;font-weight:600;white-space:nowrap}
+.nav-item.active .ni{transform:translateY(-2px)}
+.nav-item.active .nl{color:var(--gold)}
+.nav-item.active::after{content:'';position:absolute;bottom:-8px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* PAGES */
+.page{display:none;padding:0 16px 20px;animation:pgIn .28s ease}
+.page.active{display:block}
+@keyframes pgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ph{padding:20px 0 14px;display:flex;align-items:center;justify-content:space-between}
+.pt{font-size:24px;font-weight:900}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:20px;margin-bottom:14px}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.ct{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+
+/* PROGRESS */
+.pb{background:var(--surface2);border-radius:100px;height:10px;overflow:hidden;margin:10px 0 6px}
+.pf{height:100%;border-radius:100px;transition:width .9s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.pf::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shim 2.5s infinite}
+@keyframes shim{to{left:100%}}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:100px;font-size:12px;font-weight:700}
+.bg{background:var(--gold-dim);color:var(--gold)}
+.bb{background:var(--blue-dim);color:var(--blue)}
+.bgr{background:var(--green-dim);color:var(--green)}
+.br{background:var(--red-dim);color:var(--red)}
+.bpu{background:var(--purple-dim);color:var(--purple)}
+
+/* STATS GRID */
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scard{background:var(--surface2);border-radius:16px;padding:14px;text-align:center;border:1px solid var(--border)}
+.sv{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700}
+.sl{font-size:11px;color:var(--dim);margin-top:3px}
+
+/* BUTTONS */
+.btn{border:none;border-radius:14px;padding:13px 22px;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn:active{transform:scale(.95)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--orange));color:#000;width:100%;justify-content:center}
+.btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+
+/* LABEL */
+.sl-label{font-size:11px;font-weight:800;color:var(--dim);letter-spacing:1.2px;text-transform:uppercase;margin:18px 0 10px}
+
+/* PRAYER */
+.prayer-item{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;background:var(--surface2);border-radius:15px;margin-bottom:9px;cursor:pointer;transition:all .2s;border:2px solid transparent;user-select:none}
+.prayer-item.done{border-color:var(--green);background:var(--green-dim)}
+.prayer-item.next-prayer{border-color:var(--gold);box-shadow:0 0 14px rgba(245,200,66,.18)}
+.prayer-item:active{transform:scale(.97)}
+.pi{display:flex;align-items:center;gap:12px}
+.picon{font-size:26px}
+.pname{font-size:16px;font-weight:700}
+.ptime{font-size:12px;color:var(--gold);font-family:'Space Grotesk';font-weight:600;margin-top:2px}
+.pcheck{width:30px;height:30px;border-radius:50%;border:2px solid var(--dim);display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;flex-shrink:0}
+.prayer-item.done .pcheck{background:var(--green);border-color:var(--green);color:#000}
+
+/* PRAYER TIMES BANNER */
+.next-prayer-banner{background:linear-gradient(135deg,rgba(245,200,66,.12),rgba(251,146,60,.08));border:1px solid rgba(245,200,66,.3);border-radius:18px;padding:16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.npb-left{flex:1}
+.npb-label{font-size:11px;color:var(--dim);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.npb-name{font-size:20px;font-weight:900;color:var(--gold);margin-top:2px}
+.npb-time{font-size:13px;color:var(--dim);margin-top:2px}
+.npb-countdown{font-family:'Space Grotesk';font-size:28px;font-weight:700;color:var(--text);text-align:center}
+.npb-countdown-lbl{font-size:10px;color:var(--dim);text-align:center}
+
+/* MILESTONE */
+.ms{display:flex;align-items:center;gap:12px;padding:13px;border-radius:14px;background:var(--surface2);margin-bottom:8px;border:1px solid var(--border);transition:all .3s}
+.ms.reached{background:var(--gold-dim);border-color:rgba(245,200,66,.4)}
+.ms-ico{font-size:22px;flex-shrink:0}
+.ms-info{flex:1}
+.ms-title{font-size:14px;font-weight:700}
+.ms-desc{font-size:12px;color:var(--dim)}
+
+/* TABS */
+.tabs{display:flex;background:var(--surface2);border-radius:14px;padding:4px;margin-bottom:16px;gap:4px}
+.tab-btn{flex:1;padding:10px;border-radius:10px;border:none;background:transparent;color:var(--dim);font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.tab-btn.active{background:var(--card);color:var(--text);box-shadow:0 2px 10px rgba(0,0,0,.4)}
+
+/* GRADE */
+.grade-input{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 14px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:16px;width:100%;outline:none;transition:border-color .2s;text-align:center}
+.grade-input:focus{border-color:var(--gold)}
+.grade-badge{padding:4px 10px;border-radius:8px;font-size:12px;font-weight:700;min-width:56px;text-align:center}
+
+/* SUBJECT ACCORDION */
+.subj-card{background:var(--card);border:1px solid var(--border);border-radius:17px;margin-bottom:12px;overflow:hidden}
+.subj-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px;cursor:pointer;transition:background .2s;user-select:none}
+.subj-hdr:active{background:var(--surface2)}
+.subj-title{font-size:15px;font-weight:700}
+.subj-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border)}
+.subj-body.open{display:block}
+.exam-row{display:flex;align-items:center;gap:10px;margin-top:11px}
+.exam-lbl{font-size:13px;color:var(--dim);flex:1}
+
+/* GYM CALENDAR */
+.gym-day{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s;border:1px solid var(--border);background:var(--surface2);color:var(--dim);font-family:'Space Grotesk',sans-serif;user-select:none}
+.gym-day:active{transform:scale(.88)}
+.gym-day.attended{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.gym-day.absent{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.gym-day.future{opacity:.25;pointer-events:none}
+.gym-day.today-marker{box-shadow:0 0 0 2px var(--gold)}
+.mhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.mnav{background:var(--surface2);border:1px solid var(--border);border-radius:10px;width:38px;height:38px;cursor:pointer;color:var(--text);font-size:18px;display:flex;align-items:center;justify-content:center;border:none}
+
+/* REWARD CARDS */
+.reward-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;text-align:center;position:relative;overflow:hidden;transition:all .3s;margin-bottom:10px}
+.reward-card.locked{opacity:.45}
+.reward-card.unlocked{border-color:rgba(245,200,66,.5);background:linear-gradient(135deg,rgba(245,200,66,.08),transparent)}
+.reward-card.unlocked::before{content:'✓';position:absolute;top:11px;left:11px;background:var(--gold);color:#000;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.reward-ico{font-size:44px;margin-bottom:10px}
+.reward-title{font-size:15px;font-weight:800}
+.reward-cond{font-size:12px;color:var(--dim);margin-top:5px}
+
+/* HOME HERO */
+.hero{background:linear-gradient(135deg,#162040,#0d1426);border:1px solid rgba(245,200,66,.18);border-radius:24px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:160px;height:160px;background:radial-gradient(circle,rgba(245,200,66,.12),transparent 70%);pointer-events:none}
+.hero-date{font-size:13px;color:var(--dim)}
+.hero-msg{font-size:14px;color:var(--gold);margin-top:2px}
+.pts-row{display:flex;align-items:baseline;gap:6px;margin-top:14px}
+.pts-val{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pts-lbl{color:var(--dim);font-size:14px}
+.streak-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);border-radius:100px;padding:6px 14px;margin-top:10px}
+.streak-num{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--red)}
+.fire-anim{animation:fireBounce 1.2s ease-in-out infinite}
+@keyframes fireBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.15)}}
+
+/* RANGE INPUT */
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:100px;background:var(--surface2);outline:none;margin:10px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 0 0 4px var(--gold-dim)}
+
+/* TOGGLE */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;background:var(--surface2);border-radius:14px;margin-bottom:9px}
+.toggle{width:50px;height:26px;background:var(--surface);border-radius:100px;position:relative;cursor:pointer;border:1px solid var(--border);transition:background .3s;flex-shrink:0}
+.toggle.on{background:var(--green);border-color:var(--green)}
+.toggle::after{content:'';position:absolute;width:20px;height:20px;border-radius:50%;background:white;top:2px;left:2px;transition:transform .3s;box-shadow:0 2px 4px rgba(0,0,0,.3)}
+.toggle.on::after{transform:translateX(24px)}
+
+/* CELEBRATION */
+#cel{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px;text-align:center}
+#cel.show{display:flex;animation:pgIn .3s}
+.cel-ico{font-size:90px;animation:celBounce .5s ease-in-out infinite alternate}
+@keyframes celBounce{0%{transform:scale(1) rotate(-5deg)}100%{transform:scale(1.15) rotate(5deg)}}
+.cel-title{font-size:26px;font-weight:900;color:var(--gold)}
+.cel-desc{font-size:15px;color:var(--dim);max-width:280px}
+.cel-pts{font-family:'Space Grotesk';font-size:44px;font-weight:700;color:var(--green);animation:ptsAnim .6s ease-out}
+@keyframes ptsAnim{0%{transform:scale(0) translateY(20px);opacity:0}70%{transform:scale(1.2) translateY(-5px)}100%{transform:scale(1) translateY(0);opacity:1}}
+.cel-pts-lbl{font-size:13px;color:var(--dim);margin-top:-8px}
+
+/* FLOATING POINTS */
+.float-pts{position:fixed;font-family:'Space Grotesk';font-weight:700;font-size:22px;color:var(--gold);pointer-events:none;z-index:99998;animation:floatUp 1.4s ease-out forwards}
+@keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(1.3)}}
+
+/* CONFETTI */
+.cf{position:fixed;width:9px;height:9px;border-radius:2px;animation:cfFall 3s ease-in forwards;z-index:99999;pointer-events:none}
+@keyframes cfFall{0%{opacity:1;transform:translateY(-10px) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+
+/* CHART */
+.chart-wrap{background:var(--surface2);border-radius:16px;padding:14px;margin-bottom:14px}
+.chart-wrap canvas{width:100%;display:block}
+
+/* COMMITMENT DAYS */
+.commit-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
+.commit-day{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Grotesk'}
+.commit-day.full{background:var(--green);color:#000}
+.commit-day.partial{background:rgba(245,200,66,.35);color:var(--gold)}
+.commit-day.none{background:var(--surface);color:var(--dim)}
+.commit-day.today-c{box-shadow:0 0 0 2px var(--gold)}
+
+/* SETTINGS */
+.settings-card{background:var(--card);border:1px solid rgba(245,200,66,.15);border-radius:22px;padding:22px;text-align:center;margin-top:24px}
+
+/* LOCATION BANNER */
+.loc-banner{background:var(--blue-dim);border:1px solid rgba(94,174,255,.25);border-radius:14px;padding:12px 16px;font-size:13px;color:var(--blue);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+
+/* STREAK WARNING */
+.streak-warn{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);border-radius:14px;padding:12px 16px;font-size:13px;color:var(--red);display:flex;align-items:center;gap:8px;margin-bottom:10px;display:none}
+.streak-warn.show{display:flex}
+</style>
+</head>
+<body>
+
+<!-- PIN SCREEN -->
+<div id="pin-screen">
+  <div class="pin-logo">🔥</div>
+  <div>
+    <div class="pin-title" id="pin-title">مستقبلي</div>
+    <div class="pin-sub" id="pin-sub">أدخل الرقم السري</div>
+  </div>
+  <div class="pin-dots">
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
+  </div>
+  <div class="pin-error" id="pin-err"></div>
+  <div class="pin-pad">
+    <button class="pin-btn" onclick="pp('1')">1</button>
+    <button class="pin-btn" onclick="pp('2')">2</button>
+    <button class="pin-btn" onclick="pp('3')">3</button>
+    <button class="pin-btn" onclick="pp('4')">4</button>
+    <button class="pin-btn" onclick="pp('5')">5</button>
+    <button class="pin-btn" onclick="pp('6')">6</button>
+    <button class="pin-btn" onclick="pp('7')">7</button>
+    <button class="pin-btn" onclick="pp('8')">8</button>
+    <button class="pin-btn" onclick="pp('9')">9</button>
+    <button class="pin-btn empty"></button>
+    <button class="pin-btn" onclick="pp('0')">0</button>
+    <button class="pin-btn" onclick="pd()" style="font-size:20px">⌫</button>
+  </div>
+</div>
+
+<!-- CELEBRATION OVERLAY -->
+<div id="cel" onclick="hideCel()">
+  <div class="cel-ico" id="cel-ico">🎉</div>
+  <div class="cel-title" id="cel-title">مبروك!</div>
+  <div class="cel-desc" id="cel-desc"></div>
+  <div class="cel-pts" id="cel-pts">+100</div>
+  <div class="cel-pts-lbl">نقطة مكافأة!</div>
+  <button class="btn btn-gold" style="width:220px;margin-top:16px" onclick="hideCel()">🙌 يلا نكمل!</button>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="ph">
+    <div class="pt">🔥 مستقبلي</div>
+    <div class="streak-pill"><span class="fire-anim">🔥</span><span class="streak-num" id="h-streak">0</span><span style="font-size:12px;color:var(--dim)">يوم</span></div>
+  </div>
+  <div class="hero">
+    <div class="hero-date" id="h-date">—</div>
+    <div style="font-size:20px;font-weight:900;margin:2px 0">ركز، اشتغل، اجمع 🏆</div>
+    <div class="hero-msg">كل خطوة بتقربك من مستقبلك</div>
+    <div class="pts-row">
+      <div class="pts-val" id="h-pts">0</div>
+      <div class="pts-lbl">نقطة</div>
+    </div>
+  </div>
+  <div id="streak-warn-home" class="streak-warn">
+    <span style="font-size:20px">⚠️</span>
+    <span>الـ streak هيضيع لو ماصليتش الصلوات الباقية النهارده!</span>
+  </div>
+  <div class="sl-label">إنجازات اليوم</div>
+  <div class="sgrid">
+    <div class="scard"><div class="sv" style="color:var(--green)" id="hs-pray">0/5</div><div class="sl">الصلاة 🤲</div></div>
+    <div class="scard"><div class="sv" style="color:var(--blue)" id="hs-dip">0%</div><div class="sl">الدبلومة 💻</div></div>
+    <div class="scard"><div class="sv" style="color:var(--purple)" id="hs-sp">0%</div><div class="sl">الإسباني 🇪🇸</div></div>
+    <div class="scard"><div class="sv" style="color:var(--orange)" id="hs-gym">—</div><div class="sl">الجيم 💪</div></div>
+  </div>
+  <div class="sl-label">أقرب مكافأة</div>
+  <div class="card" id="next-reward"><div style="text-align:center;padding:6px 0"><div style="font-size:36px">🎯</div><div style="font-weight:700;margin-top:8px">ابدأ رحلتك لتفتح أول مكافأة!</div></div></div>
+  <div class="sl-label">رسم تقدمك الأسبوعي 📊</div>
+  <div class="chart-wrap">
+    <canvas id="progress-chart" height="150"></canvas>
+  </div>
+  <div class="card" style="border-color:rgba(94,174,255,.2);background:linear-gradient(135deg,rgba(94,174,255,.05),transparent)">
+    <div style="font-size:14px;line-height:1.9;color:var(--dim)">💡 <strong style="color:var(--text)">الانضباط اليومي = نقاط + مكافآت</strong><br>الصلاة أهم حاجة. بعدها الدراسة والجيم.<br>ثبّت الـ streak ولا تكسره 🔥</div>
+  </div>
+</div>
+
+<!-- PRAYER -->
+<div id="page-prayer" class="page">
+  <div class="ph">
+    <div class="pt">🤲 الصلاة</div>
+    <div class="badge br" id="pray-streak-badge">🔥 <span id="ps-num">0</span> يوم</div>
+  </div>
+
+  <!-- Next Prayer Banner -->
+  <div class="next-prayer-banner" id="next-prayer-banner">
+    <div class="npb-left">
+      <div class="npb-label">الصلاة القادمة</div>
+      <div class="npb-name" id="npb-name">—</div>
+      <div class="npb-time" id="npb-time">جاري تحديد موقعك...</div>
+    </div>
+    <div>
+      <div class="npb-countdown" id="npb-countdown">—:—</div>
+      <div class="npb-countdown-lbl">الوقت المتبقي</div>
+    </div>
+  </div>
+
+  <div id="loc-banner" class="loc-banner" style="display:none">
+    <span>📍</span><span id="loc-text">جاري جلب مواعيد الصلاة...</span>
+  </div>
+
+  <div class="card" style="border-color:rgba(61,214,140,.25);background:linear-gradient(135deg,rgba(61,214,140,.06),transparent)">
+    <div class="ch">
+      <div class="ct">🌟 اليوم</div>
+      <div class="badge bgr" id="pray-count">0/5</div>
+    </div>
+    <div class="pb"><div class="pf" id="pray-pb" style="width:0%;background:linear-gradient(90deg,var(--green),#22c55e)"></div></div>
+    <div style="font-size:13px;color:var(--dim);margin-top:4px" id="pray-msg">اضغط على كل صلاة لما تصليها 🙏</div>
+  </div>
+  <div id="prayers-list"></div>
+
+  <div class="sl-label">أيام الالتزام 📅</div>
+  <div class="card">
+    <div class="ch">
+      <div class="ct">📅 آخر 28 يوم</div>
+      <div class="badge bgr" id="commit-cnt">0 يوم كامل</div>
+    </div>
+    <div class="commit-grid" id="commit-grid"></div>
+    <div style="display:flex;gap:16px;margin-top:10px;font-size:11px;color:var(--dim)">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:var(--green);display:inline-block"></span>5/5 صلوات</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(245,200,66,.35);display:inline-block"></span>بعض الصلوات</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:var(--surface);display:inline-block"></span>لا شيء</span>
+    </div>
+  </div>
+
+  <div class="sl-label">الاستريك والمكافآت</div>
+  <div class="ms" id="mp7"><div class="ms-ico">☕</div><div class="ms-info"><div class="ms-title">خروجة مفاجأة</div><div class="ms-desc">7 أيام متتالية في الصلاة</div></div><div class="badge bg" id="mp7-b">7 يوم</div></div>
+  <div class="ms" id="mp30"><div class="ms-ico">🌟</div><div class="ms-info"><div class="ms-title">خروجة كبيرة</div><div class="ms-desc">30 يوم متتالي في الصلاة</div></div><div class="badge bg" id="mp30-b">30 يوم</div></div>
+  <div class="ms" id="mp60"><div class="ms-ico">👓</div><div class="ms-info"><div class="ms-title">نضارات</div><div class="ms-desc">60 يوم متتالي في الصلاة</div></div><div class="badge bg" id="mp60-b">60 يوم</div></div>
+</div>
+
+<!-- COURSES -->
+<div id="page-courses" class="page">
+  <div class="ph"><div class="pt">📚 الكورسات</div></div>
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-dip" onclick="switchTab('dip')">🔐 الدبلومة</button>
+    <button class="tab-btn" id="tab-sp" onclick="switchTab('sp')">🇪🇸 الإسباني</button>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div id="ctab-dip">
+    <div class="card">
+      <div class="ch"><div class="ct">💻 دبلومة السيبر سيكيوريتي</div><div class="badge bb" id="d-pct-b">0%</div></div>
+      <div style="display:flex;align-items:baseline;gap:4px">
+        <span style="font-family:'Space Grotesk';font-size:34px;font-weight:700;color:var(--blue)" id="d-num">0</span>
+        <span style="color:var(--dim)">/206 محاضرة</span>
+      </div>
+      <div class="pb"><div class="pf" id="d-pb" style="width:0%;background:linear-gradient(90deg,var(--blue),#3b82f6)"></div></div>
+      <input type="range" min="0" max="206" value="0" id="d-slider" oninput="upDip(this.value)">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-top:4px"><span>0</span><span>52</span><span>103</span><span>155</span><span>206</span></div>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:12px">
+        <input type="number" min="0" max="206" id="d-in" class="grade-input" style="max-width:90px" placeholder="0" oninput="upDip(this.value)">
+        <span style="color:var(--dim);font-size:13px">أو اكتب الرقم مباشرة</span>
+      </div>
+    </div>
+    <div class="sl-label">المايلستونز 🏁</div>
+    <div class="ms" id="msd25"><div class="ms-ico">🍽️</div><div class="ms-info"><div class="ms-title">خروجة صغيرة لوحدك</div><div class="ms-desc">25% من الدبلومة — 52 محاضرة</div></div><div class="badge bb" id="msd25-b">52 🔒</div></div>
+    <div class="ms" id="msd50"><div class="ms-ico">👔</div><div class="ms-info"><div class="ms-title">لبس جديد</div><div class="ms-desc">50% من الدبلومة — 103 محاضرة</div></div><div class="badge bb" id="msd50-b">103 🔒</div></div>
+    <div class="ms" id="msd100"><div class="ms-ico">🎧</div><div class="ms-info"><div class="ms-title">سماعات هواوي 🎧</div><div class="ms-desc">100% من الدبلومة — 206 محاضرة</div></div><div class="badge bb" id="msd100-b">206 🔒</div></div>
+  </div>
+
+  <!-- SPANISH -->
+  <div id="ctab-sp" style="display:none">
+    <div class="card">
+      <div class="ch"><div class="ct">🇪🇸 كورس الإسباني</div><div class="badge bpu" id="s-pct-b">0%</div></div>
+      <div style="display:flex;align-items:baseline;gap:4px">
+        <span style="font-family:'Space Grotesk';font-size:34px;font-weight:700;color:var(--purple)" id="s-num">0</span>
+        <span style="color:var(--dim)">/360 محاضرة</span>
+      </div>
+      <div class="pb"><div class="pf" id="s-pb" style="width:0%;background:linear-gradient(90deg,var(--purple),#8b5cf6)"></div></div>
+      <input type="range" min="0" max="360" value="0" id="s-slider" oninput="upSp(this.value)">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-top:4px"><span>0</span><span>90</span><span>180</span><span>270</span><span>360</span></div>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:12px">
+        <input type="number" min="0" max="360" id="s-in" class="grade-input" style="max-width:90px" placeholder="0" oninput="upSp(this.value)">
+        <span style="color:var(--dim);font-size:13px">أو اكتب الرقم مباشرة</span>
+      </div>
+    </div>
+    <div class="sl-label">المايلستونز 🏁</div>
+    <div class="ms" id="mss25"><div class="ms-ico">☕</div><div class="ms-info"><div class="ms-title">خروجة كافيه</div><div class="ms-desc">25% من الإسباني — 90 محاضرة</div></div><div class="badge bpu" id="mss25-b">90 🔒</div></div>
+    <div class="ms" id="mss50"><div class="ms-ico">👓</div><div class="ms-info"><div class="ms-title">نضارات</div><div class="ms-desc">50% من الإسباني — 180 محاضرة</div></div><div class="badge bpu" id="mss50-b">180 🔒</div></div>
+    <div class="ms" id="mss75"><div class="ms-ico">⌚</div><div class="ms-info"><div class="ms-title">ساعة كلاسيك ⌚</div><div class="ms-desc">75% من الإسباني — 270 محاضرة</div></div><div class="badge bpu" id="mss75-b">270 🔒</div></div>
+    <div class="ms" id="mss100"><div class="ms-ico">🏆</div><div class="ms-info"><div class="ms-title">ساعة Casio Edifice ✨ — الجائزة الكبرى!</div><div class="ms-desc">100% من الإسباني — 360 محاضرة</div></div><div class="badge bpu" id="mss100-b">360 🔒</div></div>
+  </div>
+</div>
+
+<!-- UNIVERSITY -->
+<div id="page-uni" class="page">
+  <div class="ph">
+    <div class="pt">🎓 الكلية</div>
+    <div class="badge bg" id="gpa-badge">GPA: --</div>
+  </div>
+  <div id="subjs-container"></div>
+  <div class="sl-label">الـ GPA النهائي</div>
+  <div class="card" style="border-color:rgba(245,200,66,.25)">
+    <div class="ct" style="margin-bottom:12px">🎯 GPA الترم (من 4.0)</div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <input type="number" min="0" max="4" step="0.01" id="gpa-in" class="grade-input" style="max-width:110px" placeholder="0.00" oninput="upGPA(this.value)">
+      <div><div id="gpa-disp" style="font-family:'Space Grotesk';font-size:28px;font-weight:700;color:var(--gold)">--</div><div id="gpa-stat" style="font-size:12px;color:var(--dim)">أدخل الـ GPA بعد الترم</div></div>
+    </div>
+  </div>
+  <div class="ms" id="ms-gpa"><div class="ms-ico">🎓</div><div class="ms-info"><div class="ms-title">احتفال كبير + مفاجأة 🎉</div><div class="ms-desc">GPA فوق 3.7 آخر الترم</div></div><div class="badge bg" id="ms-gpa-b">3.7+ 🔒</div></div>
+</div>
+
+<!-- GYM -->
+<div id="page-gym" class="page">
+  <div class="ph"><div class="pt">💪 الجيم</div></div>
+  <div class="card" id="gym-stat"></div>
+  <div class="mhdr">
+    <button class="mnav" onclick="chMonth(1)">‹</button>
+    <div style="font-size:17px;font-weight:800" id="gym-mlbl">—</div>
+    <button class="mnav" onclick="chMonth(-1)">›</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px;text-align:center">
+    <div style="font-size:10px;color:var(--dim)">س</div><div style="font-size:10px;color:var(--dim)">ح</div>
+    <div style="font-size:10px;color:var(--dim)">ن</div><div style="font-size:10px;color:var(--dim)">ث</div>
+    <div style="font-size:10px;color:var(--dim)">ر</div><div style="font-size:10px;color:var(--dim)">خ</div>
+    <div style="font-size:10px;color:var(--dim)">ج</div>
+  </div>
+  <div class="gym-days-grid" id="gym-cal" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px"></div>
+  <div style="display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--dim);justify-content:center">
+    <span>🟢 حضرت</span><span>🔴 غبت</span><span>⬜ لم يُسجّل</span>
+  </div>
+  <div class="sl-label">مكافآت الجيم</div>
+  <div class="ms" id="ms-gym1"><div class="ms-ico">👕</div><div class="ms-info"><div class="ms-title">قطعة لبس 👕</div><div class="ms-desc">الشهر الأول — غياب ≤ 5 أيام</div></div><div class="badge bgr" id="ms-gym1-b">الشهر 1 🔒</div></div>
+  <div class="ms" id="ms-gym2"><div class="ms-ico">🍽️</div><div class="ms-info"><div class="ms-title">خروجة مطعم 🍽️</div><div class="ms-desc">شهر 2+ — غياب ≤ 3 أيام/شهر</div></div><div class="badge bgr" id="ms-gym2-b">الشهر 2+ 🔒</div></div>
+</div>
+
+<!-- REWARDS -->
+<div id="page-rewards" class="page">
+  <div class="ph">
+    <div class="pt">🏆 مكافآتي</div>
+    <div class="badge bg" id="rwd-cnt">0/12</div>
+  </div>
+  <div id="rwd-container"></div>
+</div>
+
+<!-- SETTINGS -->
+<div id="page-settings" class="page">
+  <div class="ph"><div class="pt">⚙️ الإعدادات</div></div>
+  <div class="sl-label">الأمان</div>
+  <div class="toggle-row">
+    <div><div style="font-weight:700">🔒 تغيير الرقم السري</div><div style="font-size:12px;color:var(--dim)">4 أرقام</div></div>
+    <button class="btn btn-ghost" style="font-size:13px;padding:9px 15px" onclick="changePin()">تغيير</button>
+  </div>
+  <div class="sl-label">التنبيهات</div>
+  <div class="toggle-row">
+    <div><div style="font-weight:700">🔔 تنبيهات الصلاة</div><div style="font-size:12px;color:var(--dim)">10 دقايق قبل كل صلاة + تحذير الـ streak</div></div>
+    <div class="toggle" id="notif-tog" onclick="toggleNotif()"></div>
+  </div>
+  <div class="toggle-row">
+    <div><div style="font-weight:700">📍 تحديث مواقيت الصلاة</div><div style="font-size:12px;color:var(--dim)" id="location-lbl">اضغط لتحديد موقعك</div></div>
+    <button class="btn btn-ghost" style="font-size:13px;padding:9px 15px" onclick="getPrayerTimes(true)">تحديث</button>
+  </div>
+  <div class="sl-label">البيانات</div>
+  <div class="toggle-row">
+    <div><div style="font-weight:700">📤 تصدير البيانات</div><div style="font-size:12px;color:var(--dim)">نسخة احتياطية JSON</div></div>
+    <button class="btn btn-ghost" style="font-size:13px;padding:9px 15px" onclick="exportData()">تصدير</button>
+  </div>
+  <div class="toggle-row">
+    <div><div style="font-weight:700;color:var(--red)">🗑️ مسح كل البيانات</div><div style="font-size:12px;color:var(--dim)">لا يمكن التراجع</div></div>
+    <button class="btn" style="background:var(--red-dim);color:var(--red);border:1px solid rgba(255,107,107,.3);font-size:13px;padding:9px 15px" onclick="resetAll()">مسح</button>
+  </div>
+  <div class="settings-card">
+    <div style="font-size:36px;margin-bottom:8px">🔥</div>
+    <div style="font-weight:900;font-size:18px">مستقبلي</div>
+    <div style="color:var(--dim);font-size:13px;margin-top:4px">نظام تتبع الأهداف والمكافآت</div>
+    <div style="color:var(--dim);font-size:11px;margin-top:8px">v2.0 • بياناتك محفوظة محليًا على جهازك</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="bottom-nav">
+  <div class="nav-item active" onclick="goTo('home')" id="nav-home"><span class="ni">🏠</span><span class="nl">الرئيسية</span></div>
+  <div class="nav-item" onclick="goTo('prayer')" id="nav-prayer"><span class="ni">🤲</span><span class="nl">الصلاة</span></div>
+  <div class="nav-item" onclick="goTo('courses')" id="nav-courses"><span class="ni">📚</span><span class="nl">الكورسات</span></div>
+  <div class="nav-item" onclick="goTo('uni')" id="nav-uni"><span class="ni">🎓</span><span class="nl">الكلية</span></div>
+  <div class="nav-item" onclick="goTo('gym')" id="nav-gym"><span class="ni">💪</span><span class="nl">الجيم</span></div>
+  <div class="nav-item" onclick="goTo('rewards')" id="nav-rewards"><span class="ni">🏆</span><span class="nl">مكافآتي</span></div>
+  <div class="nav-item" onclick="goTo('settings')" id="nav-settings"><span class="ni">⚙️</span><span class="nl">إعدادات</span></div>
+</nav>
+</div>
+
+<script>
+// ════════════════════════════════
+// DATA
+// ════════════════════════════════
+const DEF = {
+  pin:null, points:0,
+  prayers:{streak:0,best:0,lastFull:null,today:[false,false,false,false,false],todayDate:null,history:{}},
+  diploma:{done:0}, spanish:{done:0},
+  uni:{
+    grades:{
+      'Atomic Physics':{mid1:null,mid2:null},
+      'Optics':{mid1:null,mid2:null},
+      'Modern Physics':{mid1:null,mid2:null,lab1:null,lab2:null},
+      'Inorganic Chemistry':{mid1:null,mid2:null,lab1:null,lab2:null,lab3:null},
+      'Differential Equations':{mid1:null,mid2:null},
+      'Algorithm':{mid1:null,mid2:null,lab1:null,lab2:null,lab3:null}
+    },
+    gpa:null
+  },
+  gym:{months:{},startMonth:null},
+  notif:false,
+  unlocked:[],
+  prayerTimes:null,
+  prayerTimesDate:null,
+  location:{lat:null,lon:null,city:''}
+};
+
+const SUBJ_CFG = {
+  'Atomic Physics':{ar:'فيزياء ذرية',color:'var(--blue)',exams:[{k:'mid1',l:'ميدترم 1'},{k:'mid2',l:'ميدترم 2'}]},
+  'Optics':{ar:'بصريات',color:'var(--purple)',exams:[{k:'mid1',l:'ميدترم 1'},{k:'mid2',l:'ميدترم 2'}]},
+  'Modern Physics':{ar:'فيزياء حديثة',color:'#5eaeff',exams:[{k:'mid1',l:'ميدترم 1'},{k:'mid2',l:'ميدترم 2'},{k:'lab1',l:'معمل فيزياء 1'},{k:'lab2',l:'معمل فيزياء 2'}]},
+  'Inorganic Chemistry':{ar:'كيمياء غير عضوية',color:'var(--green)',exams:[{k:'mid1',l:'ميدترم 1'},{k:'mid2',l:'ميدترم 2'},{k:'lab1',l:'معمل كيمياء 1'},{k:'lab2',l:'معمل كيمياء 2'},{k:'lab3',l:'معمل كيمياء 3'}]},
+  'Differential Equations':{ar:'معادلات تفاضلية',color:'var(--orange)',exams:[{k:'mid1',l:'ميدترم 1'},{k:'mid2',l:'ميدترم 2'}]},
+  'Algorithm':{ar:'خوارزميات',color:'var(--gold)',exams:[{k:'mid1',l:'ميدترم 1'},{k:'mid2',l:'ميدترم 2'},{k:'lab1',l:'معمل كومبيوتر 1'},{k:'lab2',l:'معمل كومبيوتر 2'},{k:'lab3',l:'معمل كومبيوتر 3'}]}
+};
+
+const PRAY_NAMES=['الفجر','الظهر','العصر','المغرب','العشاء'];
+const PRAY_KEYS=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
+const PRAY_ICONS=['🌅','☀️','🌤️','🌇','🌙'];
+const MONTHS_AR=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const DAYS_AR=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+
+const REWARDS = [
+  {id:'pray7',ico:'☕',t:'خروجة مفاجأة',d:'7 أيام متتالية في الصلاة',pts:150,chk:d=>d.prayers.streak>=7},
+  {id:'dip25',ico:'🍽️',t:'خروجة صغيرة لوحدك',d:'25% من الدبلومة (52 محاضرة)',pts:200,chk:d=>d.diploma.done>=52},
+  {id:'gym1',ico:'👕',t:'قطعة لبس',d:'الشهر الأول بغياب ≤ 5 أيام في الجيم',pts:200,chk:d=>gymGoal1(d)},
+  {id:'sp25',ico:'☕',t:'خروجة كافيه',d:'25% من الإسباني (90 محاضرة)',pts:150,chk:d=>d.spanish.done>=90},
+  {id:'dip50',ico:'👔',t:'لبس جديد',d:'50% من الدبلومة (103 محاضرة)',pts:300,chk:d=>d.diploma.done>=103},
+  {id:'pray30',ico:'🌟',t:'خروجة كبيرة',d:'30 يوم متتالي في الصلاة',pts:400,chk:d=>d.prayers.streak>=30},
+  {id:'sp50',ico:'👓',t:'نضارات',d:'50% من الإسباني (180 محاضرة)',pts:300,chk:d=>d.spanish.done>=180},
+  {id:'gym2',ico:'🍽️',t:'خروجة مطعم',d:'شهر 2+ في الجيم بغياب ≤ 3 أيام',pts:250,chk:d=>gymGoal2(d)},
+  {id:'sp75',ico:'⌚',t:'ساعة كلاسيك',d:'75% من الإسباني (270 محاضرة)',pts:400,chk:d=>d.spanish.done>=270},
+  {id:'dip100',ico:'🎧',t:'سماعات هواوي',d:'إتمام الدبلومة 100% (206 محاضرة)',pts:500,chk:d=>d.diploma.done>=206},
+  {id:'sp100',ico:'🏆',t:'ساعة Casio Edifice ✨',d:'إتمام كورس الإسباني 100% — الجائزة الكبرى!',pts:1000,chk:d=>d.spanish.done>=360},
+  {id:'gpa',ico:'🎓',t:'احتفال كبير + مفاجأة',d:'GPA فوق 3.7 آخر الترم',pts:500,chk:d=>d.uni.gpa&&parseFloat(d.uni.gpa)>=3.7}
+];
+
+let D={};
+let pinBuf='', pinStep=0, tmpPin='', gymVM=null;
+let prayerTimersScheduled=false;
+let countdownInterval=null;
+
+function gymGoal1(d){
+  if(!d.gym.startMonth)return false;
+  const mk=d.gym.startMonth, m=d.gym.months[mk];
+  if(!m)return false;
+  return Object.values(m.days||{}).filter(v=>v==='absent').length<=5;
+}
+function gymGoal2(d){
+  if(!d.gym.startMonth)return false;
+  const keys=Object.keys(d.gym.months).sort();
+  if(keys.length<2)return false;
+  return keys.slice(1).some(mk=>{
+    const abs=Object.values(d.gym.months[mk].days||{}).filter(v=>v==='absent').length;
+    return abs<=3;
+  });
+}
+
+// ════════════════════════════════
+// STORAGE
+// ════════════════════════════════
+function load(){
+  const s=localStorage.getItem('mq_v2');
+  if(s){
+    D=JSON.parse(s);
+    for(const k in DEF){if(D[k]===undefined)D[k]=JSON.parse(JSON.stringify(DEF[k]))}
+    if(!D.uni)D.uni=JSON.parse(JSON.stringify(DEF.uni));
+    if(!D.uni.grades)D.uni.grades=JSON.parse(JSON.stringify(DEF.uni.grades));
+    for(const k in SUBJ_CFG){if(!D.uni.grades[k])D.uni.grades[k]={}}
+    if(!D.prayers.history)D.prayers.history={};
+    if(!D.location)D.location={lat:null,lon:null,city:''};
+  } else {
+    // Try migrating from v1
+    const old=localStorage.getItem('mq_v1');
+    if(old){
+      const od=JSON.parse(old);
+      D=JSON.parse(JSON.stringify(DEF));
+      D.pin=od.pin||null;
+      D.points=od.points||0;
+      D.prayers.streak=od.prayers?.streak||0;
+      D.prayers.best=od.prayers?.best||0;
+      D.prayers.lastFull=od.prayers?.lastFull||null;
+      D.prayers.today=od.prayers?.today||[false,false,false,false,false];
+      D.prayers.todayDate=od.prayers?.todayDate||null;
+      D.diploma=od.diploma||{done:0};
+      D.spanish=od.spanish||{done:0};
+      D.uni=od.uni||JSON.parse(JSON.stringify(DEF.uni));
+      D.gym=od.gym||{months:{},startMonth:null};
+      D.notif=od.notif||false;
+      D.unlocked=od.unlocked||[];
+    } else {
+      D=JSON.parse(JSON.stringify(DEF));
+    }
+  }
+}
+function save(){localStorage.setItem('mq_v2',JSON.stringify(D))}
+
+// ════════════════════════════════
+// PIN
+// ════════════════════════════════
+function pp(d){
+  if(pinBuf.length>=4)return;
+  pinBuf+=d;
+  updDots();
+  if(pinBuf.length===4)setTimeout(submitPin,200);
+}
+function pd(){pinBuf=pinBuf.slice(0,-1);updDots()}
+function updDots(){for(let i=0;i<4;i++)document.getElementById('d'+i).classList.toggle('filled',i<pinBuf.length)}
+function submitPin(){
+  if(!D.pin){
+    if(pinStep===0){tmpPin=pinBuf;pinBuf='';pinStep=1;
+      document.getElementById('pin-title').textContent='أكد الرقم السري';
+      document.getElementById('pin-sub').textContent='أعد إدخال نفس الرقم تاني';
+      updDots();
+    } else {
+      if(pinBuf===tmpPin){D.pin=pinBuf;save();unlock();}
+      else{
+        pinErr('الرقمان غير متطابقان 😅');
+        pinBuf='';pinStep=0;tmpPin='';
+        document.getElementById('pin-title').textContent='ضع رقمك السري';
+        document.getElementById('pin-sub').textContent='اختر رقم سري من 4 أرقام';
+        updDots();
+      }
+    }
+  } else {
+    if(pinBuf===D.pin)unlock();
+    else{pinErr('رقم خاطئ، حاول تاني 🚫');pinBuf='';updDots();}
+  }
+}
+function pinErr(msg){
+  const e=document.getElementById('pin-err');
+  e.textContent=msg;e.className='pin-error shake';
+  setTimeout(()=>{e.textContent='';e.className='pin-error'},3000);
+}
+function unlock(){
+  document.getElementById('pin-screen').style.display='none';
+  document.getElementById('app').style.display='block';
+  initApp();
+}
+function changePin(){
+  const n=prompt('أدخل الرقم السري الجديد (4 أرقام):');
+  if(!n||n.length!==4||isNaN(n)){alert('يجب أن يكون 4 أرقام');return}
+  const c=prompt('أكد الرقم السري الجديد:');
+  if(n!==c){alert('الرقمان غير متطابقان');return}
+  D.pin=n;save();alert('✓ تم تغيير الرقم السري بنجاح!');
+}
+
+// ════════════════════════════════
+// INIT
+// ════════════════════════════════
+function initApp(){
+  checkNewDay();
+  const now=new Date();
+  gymVM={y:now.getFullYear(),m:now.getMonth()};
+  renderPrayers();
+  renderSubjects();
+  renderGym();
+  renderRewards();
+  syncAll();
+  updDate();
+  if(D.notif)document.getElementById('notif-tog').classList.add('on');
+  getPrayerTimes(false);
+  drawProgressChart();
+  renderCommitGrid();
+  checkStreakWarning();
+  // Refresh prayer countdown every second
+  if(countdownInterval)clearInterval(countdownInterval);
+  countdownInterval=setInterval(()=>{
+    updPrayerCountdown();
+    checkStreakWarning();
+  },1000);
+  // Refresh prayer times every hour
+  setInterval(()=>{getPrayerTimes(false)},3600000);
+}
+function updDate(){
+  const n=new Date();
+  document.getElementById('h-date').textContent=`${DAYS_AR[n.getDay()]} ${n.getDate()} ${MONTHS_AR[n.getMonth()]} ${n.getFullYear()}`;
+}
+function todayKey(){const n=new Date();return`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`}
+function yestKey(){const n=new Date();n.setDate(n.getDate()-1);return`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`}
+
+function checkNewDay(){
+  const t=todayKey();
+  if(D.prayers.todayDate!==t){
+    const y=yestKey();
+    // Save yesterday's history before resetting
+    if(D.prayers.todayDate){
+      if(!D.prayers.history)D.prayers.history={};
+      D.prayers.history[D.prayers.todayDate]=D.prayers.today.filter(Boolean).length;
+    }
+    if(D.prayers.lastFull!==y&&D.prayers.lastFull!==t){D.prayers.streak=0;}
+    D.prayers.today=[false,false,false,false,false];
+    D.prayers.todayDate=t;
+    save();
+  }
+}
+
+// ════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════
+function goTo(pg){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+pg).classList.add('active');
+  document.getElementById('nav-'+pg).classList.add('active');
+  if(pg==='gym')renderGym();
+  if(pg==='rewards'){checkAllRewards();renderRewards();}
+  if(pg==='home'){updHome();drawProgressChart();}
+  if(pg==='prayer'){renderCommitGrid();}
+}
+
+// ════════════════════════════════
+// PRAYER TIMES (from Aladhan API)
+// ════════════════════════════════
+function getPrayerTimes(force){
+  const todayStr=todayKey();
+  // Use cached if same day and not forced
+  if(!force && D.prayerTimes && D.prayerTimesDate===todayStr && D.location.lat){
+    renderPrayerSchedule(D.prayerTimes);
+    schedulePrayerReminders(D.prayerTimes);
+    return;
+  }
+  // Show loading
+  const lb=document.getElementById('loc-banner');
+  lb.style.display='flex';
+  document.getElementById('loc-text').textContent='جاري تحديد موقعك...';
+
+  if(!navigator.geolocation){
+    document.getElementById('loc-text').textContent='المتصفح لا يدعم تحديد الموقع';
+    fetchPrayerByIP();
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos=>{
+      D.location.lat=pos.coords.latitude;
+      D.location.lon=pos.coords.longitude;
+      save();
+      fetchPrayerTimesFromAPI(D.location.lat,D.location.lon);
+    },
+    err=>{
+      // Try IP-based fallback
+      if(D.location.lat){
+        fetchPrayerTimesFromAPI(D.location.lat,D.location.lon);
+      } else {
+        fetchPrayerByIP();
+      }
+    },
+    {timeout:8000}
+  );
+}
+
+function fetchPrayerByIP(){
+  // Use ip-api to get location then fetch prayer times
+  fetch('https://ip-api.com/json/?fields=lat,lon,city')
+    .then(r=>r.json())
+    .then(d=>{
+      D.location.lat=d.lat;
+      D.location.lon=d.lon;
+      D.location.city=d.city||'';
+      save();
+      fetchPrayerTimesFromAPI(d.lat,d.lon);
+    })
+    .catch(()=>{
+      // Ultimate fallback: Cairo coordinates
+      fetchPrayerTimesFromAPI(30.0444,31.2357);
+    });
+}
+
+function fetchPrayerTimesFromAPI(lat,lon){
+  const now=new Date();
+  const dateStr=`${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`;
+  const url=`https://api.aladhan.com/v1/timings/${Math.floor(now.getTime()/1000)}?latitude=${lat}&longitude=${lon}&method=5`;
+  fetch(url)
+    .then(r=>r.json())
+    .then(data=>{
+      if(data.code===200){
+        const times=data.data.timings;
+        D.prayerTimes=times;
+        D.prayerTimesDate=todayKey();
+        if(data.data.meta?.timezone)D.location.timezone=data.data.meta.timezone;
+        save();
+        renderPrayerSchedule(times);
+        schedulePrayerReminders(times);
+        const lb=document.getElementById('loc-banner');
+        lb.style.display='flex';
+        const city=D.location.city||`${lat.toFixed(2)},${lon.toFixed(2)}`;
+        document.getElementById('loc-text').textContent=`📍 مواقيت: ${city} — تم التحديث`;
+        document.getElementById('location-lbl').textContent=`📍 ${city}`;
+        setTimeout(()=>{lb.style.display='none'},4000);
+      }
+    })
+    .catch(()=>{
+      const lb=document.getElementById('loc-banner');
+      lb.style.display='none';
+    });
+}
+
+function parseTime12(t){
+  // Aladhan returns "HH:MM" in 24h
+  const[h,m]=t.split(':').map(Number);
+  return h*60+m;
+}
+
+function formatTime(t){
+  // t = "HH:MM" 24h — convert to Arabic 12h
+  const[h,m]=t.split(':').map(Number);
+  const ampm=h<12?'ص':'م';
+  const h12=h%12||12;
+  return`${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+
+function renderPrayerSchedule(times){
+  if(!times)return;
+  renderPrayers();
+  updPrayerCountdown();
+}
+
+function getNextPrayer(){
+  if(!D.prayerTimes)return null;
+  const now=new Date();
+  const curMin=now.getHours()*60+now.getMinutes();
+  const prayers=PRAY_KEYS.map((k,i)=>({name:PRAY_NAMES[i],key:k,time:D.prayerTimes[k],min:parseTime12(D.prayerTimes[k]),idx:i}));
+  // Find next
+  let next=prayers.find(p=>p.min>curMin);
+  if(!next)next=prayers[0]; // wrap to Fajr tomorrow
+  return next;
+}
+
+function updPrayerCountdown(){
+  const next=getNextPrayer();
+  if(!next){
+    document.getElementById('npb-name').textContent='—';
+    document.getElementById('npb-time').textContent='جاري جلب المواعيد...';
+    document.getElementById('npb-countdown').textContent='—:—';
+    return;
+  }
+  const now=new Date();
+  const curMin=now.getHours()*60+now.getMinutes()+now.getSeconds()/60;
+  let diff=next.min-curMin;
+  if(diff<0)diff+=24*60;
+  const hrs=Math.floor(diff/60);
+  const mins=Math.floor(diff%60);
+  const secs=Math.floor((diff-Math.floor(diff))*60);
+  const timeStr=hrs>0?`${hrs}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`:`${mins}:${String(secs).padStart(2,'0')}`;
+  document.getElementById('npb-name').textContent=next.name;
+  document.getElementById('npb-time').textContent=D.prayerTimes?formatTime(next.time):'—';
+  document.getElementById('npb-countdown').textContent=timeStr;
+  // highlight next prayer in list
+  document.querySelectorAll('.prayer-item').forEach((el,i)=>{
+    el.classList.toggle('next-prayer',i===next.idx&&!D.prayers.today[i]);
+  });
+}
+
+function schedulePrayerReminders(times){
+  if(!D.notif||!('Notification' in window)||Notification.permission!=='granted')return;
+  if(prayerTimersScheduled)return;
+  prayerTimersScheduled=true;
+  const now=new Date();
+  const curMin=now.getHours()*60+now.getMinutes();
+  PRAY_KEYS.forEach((key,i)=>{
+    const pMin=parseTime12(times[key]);
+    const reminderMin=pMin-10; // 10 min before
+    let diffMs=(reminderMin-curMin)*60*1000;
+    if(diffMs<0)return; // already passed today
+    setTimeout(()=>{
+      if(Notification.permission==='granted'&&!D.prayers.today[i]){
+        new Notification(`🕌 ${PRAY_NAMES[i]} بعد 10 دقايق`,{
+          body:`وقت ${PRAY_NAMES[i]}: ${formatTime(times[key])} — استعد للصلاة! 🤲`,
+          icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🕌</text></svg>'
+        });
+      }
+    },diffMs);
+  });
+  // Streak warning: at 10pm if streak > 0 and not all prayers done
+  const warnMin=22*60-curMin;
+  if(warnMin>0){
+    setTimeout(()=>{
+      const cnt=D.prayers.today.filter(Boolean).length;
+      if(cnt<5&&D.prayers.streak>0&&Notification.permission==='granted'){
+        new Notification('⚠️ تحذير! الـ streak هيضيع',{
+          body:`صليت ${cnt}/5 صلوات. سلسلة ${D.prayers.streak} يوم على وشك تنكسر! اصلّي الباقي 🔥`
+        });
+      }
+    },warnMin*60*1000);
+  }
+}
+
+// ════════════════════════════════
+// PRAYERS
+// ════════════════════════════════
+function renderPrayers(){
+  const times=D.prayerTimes;
+  document.getElementById('prayers-list').innerHTML=
+    PRAY_NAMES.map((n,i)=>`
+      <div class="prayer-item${D.prayers.today[i]?' done':''}" onclick="togPray(${i})" id="pray-item-${i}">
+        <div class="pi">
+          <div class="picon">${PRAY_ICONS[i]}</div>
+          <div>
+            <div class="pname">${n}</div>
+            ${times?`<div class="ptime">${formatTime(times[PRAY_KEYS[i]])}</div>`:''}
+          </div>
+        </div>
+        <div class="pcheck">${D.prayers.today[i]?'✓':''}</div>
+      </div>
+    `).join('');
+  updPrayUI();
+}
+
+function togPray(i){
+  const wasDone=D.prayers.today[i];
+  D.prayers.today[i]=!D.prayers.today[i];
+  const pts=D.prayers.today[i]?10:-10;
+  D.points+=pts;
+  if(D.points<0)D.points=0;
+
+  // Float points animation
+  if(D.prayers.today[i]){
+    const el=document.getElementById('pray-item-'+i);
+    if(el)showFloatingPoints('+10',el);
+  }
+
+  const all=D.prayers.today.every(Boolean);
+  const t=todayKey();
+  if(all&&D.prayers.lastFull!==t){
+    D.prayers.lastFull=t;
+    D.prayers.streak++;
+    if(D.prayers.streak>D.prayers.best)D.prayers.best=D.prayers.streak;
+    D.points+=50;
+    showFloatingPoints('+50 🎉',document.getElementById('prayers-list'));
+    checkPrayMilestones();
+    // Save full day in history
+    if(!D.prayers.history)D.prayers.history={};
+    D.prayers.history[t]=5;
+  }
+
+  // Update today history with current count
+  if(!D.prayers.history)D.prayers.history={};
+  D.prayers.history[t]=D.prayers.today.filter(Boolean).length;
+
+  save();
+  renderPrayers();
+  updHome();
+  renderCommitGrid();
+}
+
+function updPrayUI(){
+  const cnt=D.prayers.today.filter(Boolean).length;
+  document.getElementById('pray-count').textContent=cnt+'/5';
+  document.getElementById('pray-pb').style.width=(cnt/5*100)+'%';
+  document.getElementById('ps-num').textContent=D.prayers.streak;
+  document.getElementById('h-streak').textContent=D.prayers.streak;
+  const msgs=['ابدأ يومك بالفجر 🌅','صلي الظهر! كمان 4 باقيين','أكثر من النص خلاص، عيه 💪','كمان اتنين! قوم العصر والمغرب','كمان واحدة! العشاء وخلصت اليوم 🌙','🎉 أتممت الصلوات كلها، الله يبارك فيك!'];
+  document.getElementById('pray-msg').textContent=msgs[cnt]||'';
+  const s=D.prayers.streak;
+  setMS('mp7',s>=7,'mp7-b',s+'/7 يوم','badge bg');
+  setMS('mp30',s>=30,'mp30-b',s+'/30 يوم','badge bg');
+  setMS('mp60',s>=60,'mp60-b',s+'/60 يوم','badge bg');
+}
+
+function setMS(id,done,bId,txt,baseCls){
+  document.getElementById(id).classList.toggle('reached',done);
+  const b=document.getElementById(bId);
+  if(done){b.textContent='✓ مفتوح';b.className='badge bgr';}
+  else{b.textContent=txt;b.className=baseCls;}
+}
+
+function checkPrayMilestones(){
+  const s=D.prayers.streak;
+  if(s>=7)tryUnlock('pray7');
+  if(s>=30)tryUnlock('pray30');
+  if(s>=60)tryUnlock('mp-60');
+}
+
+// ════════════════════════════════
+// COMMITMENT GRID
+// ════════════════════════════════
+function renderCommitGrid(){
+  if(!D.prayers.history)D.prayers.history={};
+  const grid=document.getElementById('commit-grid');
+  if(!grid)return;
+  const today=todayKey();
+  const days=[];
+  for(let i=27;i>=0;i--){
+    const d=new Date();
+    d.setDate(d.getDate()-i);
+    const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    days.push({key,day:d.getDate()});
+  }
+  // Count full days
+  let fullDays=0;
+  grid.innerHTML=days.map(({key,day})=>{
+    let cnt=D.prayers.history[key]||0;
+    if(key===today)cnt=D.prayers.today.filter(Boolean).length;
+    const cls=cnt===5?'commit-day full':cnt>0?'commit-day partial':'commit-day none';
+    const todayCls=key===today?' today-c':'';
+    if(cnt===5)fullDays++;
+    return`<div class="${cls}${todayCls}" title="${day}: ${cnt}/5 صلوات">${day}</div>`;
+  }).join('');
+  const el=document.getElementById('commit-cnt');
+  if(el)el.textContent=`${fullDays} يوم كامل`;
+}
+
+// ════════════════════════════════
+// STREAK WARNING
+// ════════════════════════════════
+function checkStreakWarning(){
+  const warn=document.getElementById('streak-warn-home');
+  if(!warn)return;
+  const now=new Date();
+  const hour=now.getHours();
+  const cnt=D.prayers.today.filter(Boolean).length;
+  const remaining=5-cnt;
+  // Show warning after 8pm if streak > 0 and not all prayers done
+  if(hour>=20&&remaining>0&&D.prayers.streak>0){
+    warn.classList.add('show');
+    warn.querySelector('span:last-child').textContent=`الـ streak (${D.prayers.streak} يوم) هيضيع لو ماصليتش ${remaining} صلاة باقية النهارده!`;
+  } else {
+    warn.classList.remove('show');
+  }
+}
+
+// ════════════════════════════════
+// COURSES
+// ════════════════════════════════
+function switchTab(t){
+  document.getElementById('ctab-dip').style.display=t==='dip'?'block':'none';
+  document.getElementById('ctab-sp').style.display=t==='sp'?'block':'none';
+  document.getElementById('tab-dip').classList.toggle('active',t==='dip');
+  document.getElementById('tab-sp').classList.toggle('active',t==='sp');
+}
+function upDip(v){
+  v=Math.max(0,Math.min(206,parseInt(v)||0));
+  const prev=D.diploma.done;
+  D.diploma.done=v;
+  document.getElementById('d-num').textContent=v;
+  document.getElementById('d-slider').value=v;
+  document.getElementById('d-in').value=v;
+  const pct=Math.round(v/206*100);
+  document.getElementById('d-pct-b').textContent=pct+'%';
+  document.getElementById('d-pb').style.width=pct+'%';
+  if(v>prev){
+    const gained=(v-prev)*5;
+    D.points+=gained;
+    showFloatingPoints(`+${gained}`,document.getElementById('d-num'));
+  }
+  updDipMS(v);save();checkAllRewards();updHome();
+}
+function updDipMS(v){
+  const steps=[[52,'msd25','msd25-b'],[103,'msd50','msd50-b'],[206,'msd100','msd100-b']];
+  steps.forEach(([t,id,bid])=>{
+    document.getElementById(id).classList.toggle('reached',v>=t);
+    const b=document.getElementById(bid);
+    if(v>=t){b.textContent='✓ مفتوح';b.className='badge bgr';}
+    else{b.textContent=v+'/'+t+' 🔒';b.className='badge bb';}
+  });
+}
+function upSp(v){
+  v=Math.max(0,Math.min(360,parseInt(v)||0));
+  const prev=D.spanish.done;
+  D.spanish.done=v;
+  document.getElementById('s-num').textContent=v;
+  document.getElementById('s-slider').value=v;
+  document.getElementById('s-in').value=v;
+  const pct=Math.round(v/360*100);
+  document.getElementById('s-pct-b').textContent=pct+'%';
+  document.getElementById('s-pb').style.width=pct+'%';
+  if(v>prev){
+    const gained=(v-prev)*3;
+    D.points+=gained;
+    showFloatingPoints(`+${gained}`,document.getElementById('s-num'));
+  }
+  updSpMS(v);save();checkAllRewards();updHome();
+}
+function updSpMS(v){
+  const steps=[[90,'mss25','mss25-b'],[180,'mss50','mss50-b'],[270,'mss75','mss75-b'],[360,'mss100','mss100-b']];
+  steps.forEach(([t,id,bid])=>{
+    document.getElementById(id).classList.toggle('reached',v>=t);
+    const b=document.getElementById(bid);
+    if(v>=t){b.textContent='✓ مفتوح';b.className='badge bgr';}
+    else{b.textContent=v+'/'+t+' 🔒';b.className='badge bpu';}
+  });
+}
+
+// ════════════════════════════════
+// UNIVERSITY
+// ════════════════════════════════
+function gradeLabel(g){g=parseFloat(g);if(g>=85)return'ممتاز';if(g>=75)return'جيد جداً';if(g>=65)return'جيد';if(g>=50)return'مقبول';return'راسب'}
+function gradeColor(g){g=parseFloat(g);if(g>=85)return'var(--gold)';if(g>=75)return'var(--green)';if(g>=65)return'var(--blue)';if(g>=50)return'var(--orange)';return'var(--red)'}
+function gradeBg(g){g=parseFloat(g);if(g>=85)return'var(--gold-dim)';if(g>=75)return'var(--green-dim)';if(g>=65)return'var(--blue-dim)';if(g>=50)return'rgba(251,146,60,.13)';return'var(--red-dim)'}
+
+function renderSubjects(){
+  const container=document.getElementById('subjs-container');
+  container.innerHTML=Object.entries(SUBJ_CFG).map(([key,cfg])=>{
+    const s=D.uni.grades[key]||{};
+    const vals=cfg.exams.map(e=>s[e.k]).filter(v=>v!==null&&v!==undefined&&v!=='');
+    const avg=vals.length?(vals.reduce((a,b)=>a+parseFloat(b),0)/vals.length).toFixed(1):null;
+    return`<div class="subj-card">
+      <div class="subj-hdr" onclick="togSubj('${key.replace(/\s/g,'_')}')">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:9px;height:9px;border-radius:50%;background:${cfg.color};flex-shrink:0"></div>
+          <div class="subj-title">${cfg.ar}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          ${avg?`<span style="font-family:'Space Grotesk';font-weight:700;color:${gradeColor(avg)}">${avg}%</span><span class="grade-badge" style="background:${gradeBg(avg)};color:${gradeColor(avg)}">${gradeLabel(avg)}</span>`:''}
+          <span style="color:var(--dim);font-size:18px">›</span>
+        </div>
+      </div>
+      <div class="subj-body" id="sb-${key.replace(/\s/g,'_')}">
+        ${cfg.exams.map(e=>`
+          <div class="exam-row">
+            <div class="exam-lbl">${e.l}</div>
+            <input type="number" min="0" max="100" class="grade-input" style="max-width:75px;padding:8px 10px"
+              placeholder="--" value="${s[e.k]!==null&&s[e.k]!==undefined&&s[e.k]!==''?s[e.k]:''}"
+              oninput="upGrade('${key}','${e.k}',this.value)">
+            <div class="grade-badge" style="background:${s[e.k]?gradeBg(s[e.k]):'var(--surface2)'};color:${s[e.k]?gradeColor(s[e.k]):'var(--dim)'}">
+              ${s[e.k]?gradeLabel(s[e.k]):'--'}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+function togSubj(id){document.getElementById('sb-'+id).classList.toggle('open')}
+function upGrade(subj,key,v){
+  v=v===''?null:Math.max(0,Math.min(100,parseFloat(v)));
+  if(!D.uni.grades[subj])D.uni.grades[subj]={};
+  D.uni.grades[subj][key]=v;
+  save();renderSubjects();checkAllRewards();
+}
+function upGPA(v){
+  v=v===''?null:Math.max(0,Math.min(4,parseFloat(v)));
+  D.uni.gpa=v;
+  const disp=document.getElementById('gpa-disp');
+  const stat=document.getElementById('gpa-stat');
+  const badge=document.getElementById('gpa-badge');
+  if(v!==null){
+    disp.textContent=v.toFixed(2);
+    badge.textContent='GPA: '+v.toFixed(2);
+    if(v>=3.7){stat.textContent='🌟 ممتاز! أنت رائع جداً!';stat.style.color='var(--gold)';document.getElementById('ms-gpa').classList.add('reached');document.getElementById('ms-gpa-b').textContent='✓ مفتوح';document.getElementById('ms-gpa-b').className='badge bgr';}
+    else{stat.textContent=(3.7-v).toFixed(2)+' نقطة للوصول للامتياز';stat.style.color='var(--dim)';}
+  } else {disp.textContent='--';badge.textContent='GPA: --';}
+  save();checkAllRewards();
+}
+
+// ════════════════════════════════
+// GYM
+// ════════════════════════════════
+function gymMK(y,m){return`${y}-${String(m+1).padStart(2,'0')}`}
+function renderGym(){
+  if(!gymVM)return;
+  const{y,m}=gymVM, mk=gymMK(y,m);
+  document.getElementById('gym-mlbl').textContent=`${MONTHS_AR[m]} ${y}`;
+  if(!D.gym.months[mk])D.gym.months[mk]={days:{}};
+  if(!D.gym.startMonth){D.gym.startMonth=mk;save();}
+  const mData=D.gym.months[mk];
+  const dim=new Date(y,m+1,0).getDate();
+  const firstDay=new Date(y,m,1).getDay();
+  const offset=(firstDay+1)%7;
+  const now=new Date();
+  let cal='';
+  for(let i=0;i<offset;i++)cal+='<div></div>';
+  for(let d=1;d<=dim;d++){
+    const st=mData.days[d];
+    const isFuture=new Date(y,m,d)>now;
+    const isToday=now.getFullYear()===y&&now.getMonth()===m&&now.getDate()===d;
+    let cls='gym-day';
+    if(st==='attended')cls+=' attended';
+    else if(st==='absent')cls+=' absent';
+    if(isFuture)cls+=' future';
+    if(isToday)cls+=' today-marker';
+    cal+=`<div class="${cls}" onclick="togGym(${d})">${d}</div>`;
+  }
+  document.getElementById('gym-cal').innerHTML=cal;
+  const att=Object.values(mData.days).filter(v=>v==='attended').length;
+  const abs=Object.values(mData.days).filter(v=>v==='absent').length;
+  const isFirst=mk===D.gym.startMonth;
+  const maxAbs=isFirst?5:3;
+  const ok=abs<=maxAbs;
+  document.getElementById('gym-stat').innerHTML=`
+    <div class="ch"><div class="ct">📊 إحصائيات ${MONTHS_AR[m]}</div><div class="badge ${ok?'bgr':'br'}">${ok?'✓ التزمت':'⚠️ تجاوزت'}</div></div>
+    <div class="sgrid">
+      <div class="scard"><div class="sv" style="color:var(--green)">${att}</div><div class="sl">يوم حضرت 💪</div></div>
+      <div class="scard"><div class="sv" style="color:${abs<=maxAbs?'var(--orange)':'var(--red)'}">${abs}/${maxAbs}</div><div class="sl">غياب (حد ${maxAbs})</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--dim)">${isFirst?'📅 الشهر الأول — حد الغياب 5 أيام':'📅 شهر عادي — حد الغياب 3 أيام'}</div>
+  `;
+  updGymMS();
+}
+function togGym(d){
+  const mk=gymMK(gymVM.y,gymVM.m);
+  if(!D.gym.months[mk])D.gym.months[mk]={days:{}};
+  const cur=D.gym.months[mk].days[d];
+  if(!cur){D.gym.months[mk].days[d]='attended';showFloatingPoints('+20 💪',document.getElementById('gym-cal'));D.points+=20;}
+  else if(cur==='attended')D.gym.months[mk].days[d]='absent';
+  else delete D.gym.months[mk].days[d];
+  save();renderGym();checkAllRewards();updHome();
+}
+function chMonth(d){
+  gymVM.m+=d;
+  if(gymVM.m>11){gymVM.m=0;gymVM.y++;}
+  if(gymVM.m<0){gymVM.m=11;gymVM.y--;}
+  renderGym();
+}
+function updGymMS(){
+  const g1=gymGoal1(D), g2=gymGoal2(D);
+  const m1=document.getElementById('ms-gym1'), m2=document.getElementById('ms-gym2');
+  if(g1){m1.classList.add('reached');const b=document.getElementById('ms-gym1-b');b.textContent='✓ مفتوح';b.className='badge bgr';}
+  if(g2){m2.classList.add('reached');const b=document.getElementById('ms-gym2-b');b.textContent='✓ مفتوح';b.className='badge bgr';}
+}
+
+// ════════════════════════════════
+// REWARDS
+// ════════════════════════════════
+function tryUnlock(id){
+  if(!D.unlocked.includes(id)){
+    D.unlocked.push(id);
+    const r=REWARDS.find(x=>x.id===id);
+    if(r){
+      const bonus=r.pts||100;
+      D.points+=bonus;
+      save();
+      showCel(r.ico,r.t,r.d,bonus);
+      confetti();
+    }
+    renderRewards();
+  }
+}
+function checkAllRewards(){
+  REWARDS.forEach(r=>{if(r.chk(D)&&!D.unlocked.includes(r.id))tryUnlock(r.id);});
+}
+function renderRewards(){
+  const ul=D.unlocked.length;
+  document.getElementById('rwd-cnt').textContent=`${ul}/${REWARDS.length}`;
+  const sorted=[...REWARDS].sort((a,b)=>(D.unlocked.includes(b.id)?1:0)-(D.unlocked.includes(a.id)?1:0));
+  document.getElementById('rwd-container').innerHTML=sorted.map(r=>{
+    const un=D.unlocked.includes(r.id)||r.chk(D);
+    if(un&&!D.unlocked.includes(r.id)){D.unlocked.push(r.id);save();}
+    return`<div class="reward-card ${un?'unlocked':'locked'}">
+      <div class="reward-ico">${r.ico}</div>
+      <div class="reward-title">${r.t}</div>
+      <div class="reward-cond">${r.d}</div>
+      <div style="margin-top:6px;font-size:13px;color:${un?'var(--gold)':'var(--dim)'}">
+        ${un?`🎉 مبروك! +${r.pts||100} نقطة`:'🔒 لم تصلها بعد'}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════
+// CELEBRATION
+// ════════════════════════════════
+function showCel(ico,t,d,pts){
+  document.getElementById('cel-ico').textContent=ico;
+  document.getElementById('cel-title').textContent='مبروك! '+t;
+  document.getElementById('cel-desc').textContent=d;
+  document.getElementById('cel-pts').textContent='+'+(pts||100);
+  document.getElementById('cel').classList.add('show');
+}
+function hideCel(){document.getElementById('cel').classList.remove('show')}
+function confetti(){
+  const cols=['#f5c842','#5eaeff','#3dd68c','#ff6b6b','#b98ef8','#fb923c','#fff','#22c55e'];
+  for(let i=0;i<90;i++){
+    setTimeout(()=>{
+      const e=document.createElement('div');
+      e.className='cf';
+      e.style.left=Math.random()*100+'vw';
+      e.style.top='-12px';
+      e.style.background=cols[Math.floor(Math.random()*cols.length)];
+      e.style.transform=`rotate(${Math.random()*360}deg)`;
+      e.style.animationDuration=(2+Math.random()*2)+'s';
+      const sz=5+Math.random()*10;
+      e.style.width=sz+'px';e.style.height=sz+'px';
+      // Randomize shape
+      e.style.borderRadius=Math.random()>0.5?'50%':'2px';
+      document.body.appendChild(e);
+      setTimeout(()=>e.remove(),4500);
+    },i*40);
+  }
+}
+
+// Floating points animation
+function showFloatingPoints(txt,anchorEl){
+  const el=document.createElement('div');
+  el.className='float-pts';
+  el.textContent=txt;
+  if(anchorEl){
+    const rect=anchorEl.getBoundingClientRect();
+    el.style.left=(rect.left+rect.width/2-20)+'px';
+    el.style.top=(rect.top-10)+'px';
+  } else {
+    el.style.left='50%';
+    el.style.top='50%';
+  }
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),1500);
+}
+
+// ════════════════════════════════
+// PROGRESS CHART
+// ════════════════════════════════
+function drawProgressChart(){
+  const canvas=document.getElementById('progress-chart');
+  if(!canvas)return;
+  const dpr=window.devicePixelRatio||1;
+  const w=canvas.parentElement.clientWidth-28;
+  const h=150;
+  canvas.style.width=w+'px';
+  canvas.style.height=h+'px';
+  canvas.width=w*dpr;
+  canvas.height=h*dpr;
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+
+  // Build last 7 days data
+  const days=[];
+  const history=D.prayers.history||{};
+  for(let i=6;i>=0;i--){
+    const d=new Date();
+    d.setDate(d.getDate()-i);
+    const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    let cnt=history[key]||0;
+    if(i===0)cnt=D.prayers.today.filter(Boolean).length;
+    const dayName=['أح','ن','ث','ر','خ','ج','س'][d.getDay()];
+    days.push({label:dayName,prayers:cnt,date:d.getDate()});
+  }
+
+  const pad={t:16,r:8,b:36,l:8};
+  const chartW=w-pad.l-pad.r;
+  const chartH=h-pad.t-pad.b;
+  const barW=(chartW/7)*0.55;
+  const barGap=(chartW/7);
+
+  // Background
+  ctx.fillStyle='transparent';
+  ctx.clearRect(0,0,w,h);
+
+  // Grid lines
+  for(let i=0;i<=5;i++){
+    const y=pad.t+chartH-(chartH/5)*i;
+    ctx.strokeStyle='rgba(255,255,255,0.04)';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(pad.l,y);
+    ctx.lineTo(w-pad.r,y);
+    ctx.stroke();
+  }
+
+  // Bars
+  days.forEach((d,i)=>{
+    const x=pad.l+i*barGap+(barGap-barW)/2;
+    const barH=d.prayers===0?2:(d.prayers/5)*chartH;
+    const y=pad.t+chartH-barH;
+    const isToday=i===6;
+
+    // Gradient
+    const grad=ctx.createLinearGradient(0,y,0,pad.t+chartH);
+    if(d.prayers===5){
+      grad.addColorStop(0,'#3dd68c');
+      grad.addColorStop(1,'rgba(61,214,140,0.3)');
+    } else if(d.prayers>0){
+      grad.addColorStop(0,'#f5c842');
+      grad.addColorStop(1,'rgba(245,200,66,0.3)');
+    } else {
+      grad.addColorStop(0,'rgba(90,101,128,0.3)');
+      grad.addColorStop(1,'rgba(90,101,128,0.1)');
+    }
+    ctx.fillStyle=grad;
+    // Rounded top
+    const r=Math.min(5,barW/2);
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.lineTo(x+barW-r,y);
+    ctx.quadraticCurveTo(x+barW,y,x+barW,y+r);
+    ctx.lineTo(x+barW,pad.t+chartH);
+    ctx.lineTo(x,pad.t+chartH);
+    ctx.lineTo(x,y+r);
+    ctx.quadraticCurveTo(x,y,x+r,y);
+    ctx.closePath();
+    ctx.fill();
+
+    // Today indicator
+    if(isToday){
+      ctx.strokeStyle='#f5c842';
+      ctx.lineWidth=2;
+      ctx.stroke();
+    }
+
+    // Day label
+    ctx.fillStyle=isToday?'#f5c842':'rgba(90,101,128,0.9)';
+    ctx.font=`${isToday?700:400} 11px Tajawal, sans-serif`;
+    ctx.textAlign='center';
+    ctx.fillText(d.label,x+barW/2,pad.t+chartH+14);
+
+    // Prayer count on top
+    if(d.prayers>0){
+      ctx.fillStyle=d.prayers===5?'#3dd68c':'#f5c842';
+      ctx.font='bold 10px Space Grotesk, sans-serif';
+      ctx.textAlign='center';
+      ctx.fillText(d.prayers+'/5',x+barW/2,y-4);
+    }
+  });
+
+  // Legend
+  ctx.fillStyle='rgba(90,101,128,0.8)';
+  ctx.font='10px Tajawal';
+  ctx.textAlign='right';
+  ctx.fillText('صلوات الأسبوع',w-pad.r,pad.t-4);
+}
+
+// ════════════════════════════════
+// HOME
+// ════════════════════════════════
+function updHome(){
+  document.getElementById('h-pts').textContent=D.points.toLocaleString('ar-EG');
+  document.getElementById('h-streak').textContent=D.prayers.streak;
+  const pc=D.prayers.today.filter(Boolean).length;
+  document.getElementById('hs-pray').textContent=pc+'/5';
+  document.getElementById('hs-dip').textContent=Math.round(D.diploma.done/206*100)+'%';
+  document.getElementById('hs-sp').textContent=Math.round(D.spanish.done/360*100)+'%';
+  const now=new Date(), mk=gymMK(now.getFullYear(),now.getMonth());
+  const tg=D.gym.months[mk]?.days[now.getDate()];
+  document.getElementById('hs-gym').textContent=tg==='attended'?'✅':tg==='absent'?'❌':'—';
+  updNextReward();
+}
+function updNextReward(){
+  const next=REWARDS.find(r=>!D.unlocked.includes(r.id)&&!r.chk(D));
+  const el=document.getElementById('next-reward');
+  if(next){
+    el.innerHTML=`<div style="text-align:center;padding:4px 0"><div style="font-size:38px">${next.ico}</div><div style="font-weight:800;margin-top:8px;font-size:16px">${next.t}</div><div style="color:var(--dim);font-size:13px;margin-top:4px">${next.d}</div><div style="margin-top:8px;color:var(--gold);font-size:12px;font-weight:700">+${next.pts} نقطة عند الفتح 🏆</div></div>`;
+  } else if(D.unlocked.length>0) {
+    el.innerHTML=`<div style="text-align:center;padding:4px 0"><div style="font-size:38px">🏆</div><div style="font-weight:800;margin-top:8px">جمعت كل المكافآت! أنت أسطورة 🎊</div></div>`;
+  }
+}
+
+// ════════════════════════════════
+// SYNC ALL
+// ════════════════════════════════
+function syncAll(){
+  updHome();
+  updPrayUI();
+  updDipMS(D.diploma.done);
+  updSpMS(D.spanish.done);
+  document.getElementById('d-num').textContent=D.diploma.done;
+  document.getElementById('d-slider').value=D.diploma.done;
+  document.getElementById('d-in').value=D.diploma.done||'';
+  document.getElementById('d-pct-b').textContent=Math.round(D.diploma.done/206*100)+'%';
+  document.getElementById('d-pb').style.width=Math.round(D.diploma.done/206*100)+'%';
+  document.getElementById('s-num').textContent=D.spanish.done;
+  document.getElementById('s-slider').value=D.spanish.done;
+  document.getElementById('s-in').value=D.spanish.done||'';
+  document.getElementById('s-pct-b').textContent=Math.round(D.spanish.done/360*100)+'%';
+  document.getElementById('s-pb').style.width=Math.round(D.spanish.done/360*100)+'%';
+  if(D.uni.gpa!==null&&D.uni.gpa!==undefined){document.getElementById('gpa-in').value=D.uni.gpa;upGPA(D.uni.gpa);}
+  checkAllRewards();
+}
+
+// ════════════════════════════════
+// NOTIFICATIONS
+// ════════════════════════════════
+function toggleNotif(){
+  const tog=document.getElementById('notif-tog');
+  if(!D.notif){
+    if('Notification' in window){
+      Notification.requestPermission().then(p=>{
+        if(p==='granted'){
+          D.notif=true;tog.classList.add('on');save();
+          prayerTimersScheduled=false;
+          if(D.prayerTimes)schedulePrayerReminders(D.prayerTimes);
+          new Notification('🔥 مستقبلي',{body:'تم تفعيل التنبيهات! هتتذكر بالصلاة قبلها بـ 10 دقايق ✨'});
+        } else {
+          alert('الرجاء السماح بالإشعارات من إعدادات المتصفح');
+        }
+      });
+    }
+  } else {
+    D.notif=false;tog.classList.remove('on');save();
+  }
+}
+
+// ════════════════════════════════
+// EXPORT / RESET
+// ════════════════════════════════
+function exportData(){
+  const b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);
+  a.download='mustaqbali_backup.json';a.click();
+}
+function resetAll(){
+  if(confirm('أنت متأكد؟ كل بياناتك هتتمسح! 😱\n\nلا يمكن التراجع!')){
+    localStorage.removeItem('mq_v2');
+    localStorage.removeItem('mq_v1');
+    location.reload();
+  }
+}
+
+// ════════════════════════════════
+// STARTUP
+// ════════════════════════════════
+window.addEventListener('load',()=>{
+  load();
+  if(!D.pin){
+    document.getElementById('pin-title').textContent='ضع رقمك السري';
+    document.getElementById('pin-sub').textContent='اختر رقم سري من 4 أرقام 🔐';
+  }
+});
+window.addEventListener('resize',()=>{
+  if(document.getElementById('page-home').classList.contains('active')){
+    drawProgressChart();
+  }
+});
+</script>
+</body>
+</html>
